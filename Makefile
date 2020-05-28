@@ -7,4 +7,4 @@ test:
 freeze:
     pip freeze > requirements.txt
 
-.PHONY: init test
+.PHONY: init test freeze
