@@ -7,7 +7,7 @@ from mockrtb.openrtb.response.SeatBid import SeatBid
 from mockrtb.http.AdURLFactory import AdURLFactory
 
 
-class HttpHandler(object):
+class Bidder(object):
     def __init__(self, base_url):
         self.bid_manager = BidManager()
         self.url_factory = AdURLFactory(base_url)
@@ -35,7 +35,7 @@ class HttpHandler(object):
         )
         return res
 
-    def do_bid(self, payload):
+    def process_request(self, payload):
         req = BidRequest.deserialize(json.loads(payload))
         res = self.make_response(req)
         return str(res.serialize())
