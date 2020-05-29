@@ -1,7 +1,31 @@
 #!/bin/bash
 
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    echo ""
+    echo "Usage: $0 [-e|--endpoint <endpoint>] [-h|--help]"
+    exit 1
+    ;;
+    -e|--endpoint)
+    endpoint="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
 # the default bidder endpoint
-endpoint="http://127.0.0.1:8080"
+endpoint=${endpoint:-"http://127.0.0.1:8080"}
 
 proto="$(echo ${endpoint} | grep :// | sed -e's,^\(.*://\).*,\1,g')"
 url="$(echo ${endpoint/$proto/})"
@@ -20,6 +44,11 @@ req_id=$(uuidgen)
 usr_id=$(uuidgen)
 
 # send the request
+echo ""
+echo "Sending a bid request to ${endpoint}..."
+echo "For more information please use: $0 --help"
+echo ""
+
 curl --location  --request POST ${endpoint} \
   --header "${hdr_cont_type}" \
   --header "${hdr_host_name}" \
