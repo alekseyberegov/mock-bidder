@@ -39,7 +39,7 @@ make login
   req_id=$(uuidgen)
   usr_id=$(uuidgen)
 
-  curl $silent --location --request POST ${endpoint} \
+  curl --location --request POST ${endpoint} \
   --header "${hdr_cont_type}" \
   --header "${hdr_host_name}" \
   --header "${hdr_open_rtb}" \
