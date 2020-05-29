@@ -21,7 +21,7 @@ make run
 ```
 ### Connecting to the docker container
 ```shell script
-make login
+make shell
 ```
 ## Testing docker deployment
 ```shell script

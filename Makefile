@@ -13,7 +13,7 @@ build:
 run:
 	docker run -p 8080:9000 -d aberegov/mockrtb
 
-login:
+shell:
 	docker run -ti aberegov/mockrtb /bin/bash
 
-.PHONY: init test freeze build run login
+.PHONY: init test freeze build run shell
