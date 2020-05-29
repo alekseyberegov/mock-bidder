@@ -4,7 +4,7 @@ from mockrtb.openrtb.request.BidRequest import BidRequest
 from mockrtb.openrtb.response.Bid import Bid
 from mockrtb.openrtb.response.BidResponse import BidResponse
 from mockrtb.openrtb.response.SeatBid import SeatBid
-from mockrtb.http.AdURLFactory import AdURLFactory
+from mockrtb.bidder.AdURLFactory import AdURLFactory
 
 
 class Bidder(object):
