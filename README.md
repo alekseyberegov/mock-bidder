@@ -19,7 +19,7 @@ make build
 ```shell script
 make run
 ```
-### Connection to the docker container
+### Connecting to the docker container
 ```shell script
 make login
 ```
