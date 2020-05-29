@@ -23,9 +23,9 @@ make run
 ```shell script
 make login
 ```
-## Testing
+## Testing Docker deployment
 ```shell script
-  endpoint="http://127.0.0.1:9000"
+  endpoint="http://127.0.0.1:8080"
   proto="$(echo ${endpoint} | grep :// | sed -e's,^\(.*://\).*,\1,g')"
   url="$(echo ${endpoint/$proto/})"
   hdr_host_name="$(echo ${url} | cut -d/ -f1)"
