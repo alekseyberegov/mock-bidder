@@ -7,7 +7,7 @@ class RtbHttpEndpoint(object):
     def __init__(self, handler_class=RtbHttpHandler):
         self.handler_class = handler_class
 
-    def run(self, port=9000, base_url='http://localhost'):
+    def run(self, port, base_url):
         server_address = ('', port)
         handler = partial(self.handler_class, base_url)
         httpd = ThreadingHTTPServer(server_address, handler)
