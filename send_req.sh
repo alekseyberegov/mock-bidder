@@ -49,31 +49,27 @@ echo "Sending a bid request to ${endpoint}..."
 echo "For more information please use: $0 --help"
 echo ""
 
-curl --location  --request POST ${endpoint} \
+curl --location  --request POST ${endpoint}  \
   --header "${hdr_cont_type}" \
   --header "${hdr_host_name}" \
   --header "${hdr_open_rtb}" \
   --data-raw "{
       \"id\" : \"${req_id}\",
       \"bcat\" : [],
-      \"imp\": [
-          {
-          \"id\": \"${req_id}\",
-          \"instl\": 1
-          }
-      ],
-      \"site\": {
-          \"id\": \"${pub_id}\",
-          \"cat\" : ${pub_cat}
-      },
-      \"device\": {
-          \"ua\": \"${dev_ua}\",
-          \"ip\": \"${dev_ip}\"
-      },
-      \"user\": {
-          \"id\": \"${usr_id}\"
-      }
-  }"
+      \"imp\"   :[{\"id\": \"${req_id}\", \"instl\": 1 }],
+      \"site\"  : {\"id\": \"${pub_id}\", \"cat\" : ${pub_cat} },
+      \"device\": {\"ua\": \"${dev_ua}\", \"ip\": \"${dev_ip}\" },
+      \"user\"  : {\"id\": \"${usr_id}\"}
+  }" -w @- <<'EOF'
+\n                   ----------\n
+    time_namelookup:  %{time_namelookup}\n
+       time_connect:  %{time_connect}\n
+    time_appconnect:  %{time_appconnect}\n
+   time_pretransfer:  %{time_pretransfer}\n
+      time_redirect:  %{time_redirect}\n
+ time_starttransfer:  %{time_starttransfer}\n
+                    ----------\n
+         time_total:  %{time_total}\n
+EOF
 
-echo ""
 
